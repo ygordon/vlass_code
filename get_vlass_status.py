@@ -5,7 +5,7 @@ from io import BytesIO
 #from astropy.io import ascii
 from astropy.table import Table
 
-outputfile = '../vlass_status.fits'
+outputfile = 'vlass_status.fits'
 
 def parse_row(row, names):
     'assumes row is a list of column values for a row'
