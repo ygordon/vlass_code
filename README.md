@@ -1,6 +1,6 @@
 # ReadMe
 
-An assortment of scripts useful for accessing and using data from VLASS
+This repo contatins an assortment of code useful for accessing and using data from VLASS. Individual scripts are detailed below.
 
 
 ## get_VLASS_cutouts
@@ -36,6 +36,23 @@ The following python packages are required to run this code (version used in dev
 ## get_vlass_status
 
 code to obtain the latest observing and QL imaging status of VLASS from NRAO (https://archive-new.nrao.edu/vlass/VLASS_dyn_summary.php).
-outputs table as a fits file (*vlass_status.fits*), call code as:
+Outputs a fits file (*vlass_status.fits*) of a table containing information on RA and Dec range, epoch of observation, observation date, and imaging status for each VLASS Tile observed. 
+For tiles observed in all three epochs there will be three rows correspoding to that tile.
+Call the code as:
 
-    > python get_vlass_status.py
+    >python get_vlass_status.py
+
+
+## vlass_image_stacking
+
+A script to coad multiple ql images, and convolves resolution to a common beam.
+Useful for obtaining additional depth from multi-epoch data.
+Call as:
+
+    >python vlass_image_stacking.py im1.fits,im2.fits,im3.fits
+    
+e.g., where *im1.fits* is the fits file for an epoch 1 image of the target, *im2.fits* is an epoch 2 image of the target and *im3.fits* is an epoch 3 image of the target.
+Optional arguments that can be called when running this script are [default values in square brackets]:\
+*--indir* ["."], directory containing the image files (if specified don't include file path in image names when calling the script);\
+*--outdir* ["."], directory to save the output image file to;\
+*--outname* ["vlass_coad.fits"], name of the output image file.
