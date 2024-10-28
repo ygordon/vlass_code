@@ -1,9 +1,9 @@
-#ReadMe
+# ReadMe
 
 An assortment of scripts useful for accessing and using data from VLASS
 
 
-##get_VLASS_cutouts
+## get_VLASS_cutouts
 
 command line script for querying CADC for VLASS images and obtaining a cutout fits files centred on the coordinates provided. Where a cutout covers multiple VLASS images, the returned cutout is a mosaic including updated WCS and beam information in the header. Run as: 
 
@@ -33,7 +33,7 @@ The following python packages are required to run this code (version used in dev
 * radio_beam (0.3.3)
 
 
-##get_vlass_status
+## get_vlass_status
 
 code to obtain the latest observing and QL imaging status of VLASS from NRAO (https://archive-new.nrao.edu/vlass/VLASS_dyn_summary.php).
 outputs table as a fits file (*vlass_status.fits*), call code as:
