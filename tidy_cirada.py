@@ -228,7 +228,7 @@ coldict = {'Component_name': {'dtype': '<U31',
 ###########################################################
 ###functionality
 
-def tidy_table(data, coldict, maskfill=-99):
+def tidy_table(data, coldict, maskfill=-99, sortcol='RA'):
     'cleans up data table and adds units'
     for col in data.colnames:
         if col in list(coldict.keys()):
@@ -247,6 +247,9 @@ def tidy_table(data, coldict, maskfill=-99):
             if colmasked == True:
                 data[col] = MaskedColumn(data[col])
                 data[col].mask = cmask
+    
+    data.sort(sortcol)
+    
     return
 
 
