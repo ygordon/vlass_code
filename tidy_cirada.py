@@ -231,21 +231,22 @@ coldict = {'Component_name': {'dtype': '<U31',
 def tidy_table(data, coldict, maskfill=-99):
     'cleans up data table and adds units'
     for col in data.colnames:
-        colmasked = False
-        cdtype = coldict[col]['dtype']
-        if type(data[col]) == MaskedColumn:
-            colmasked = True
-            cmask = data[col].mask
-            data[col].fill_value = maskfill
-            data[col] = data[col].filled()
-        cdata = np.array(data[col]).astype(cdtype)
-        if 'round2' in list(coldict[col].keys()):
-            cdata = np.round(cdata, coldict[col]['round2'])
-        data[col] = cdata
-        data[col].unit = coldict[col]['unit']
-        if colmasked == True:
-            data[col] = MaskedColumn(data[col])
-            data[col].mask = cmask
+        if col in list(coldict.keys()):
+            colmasked = False
+            cdtype = coldict[col]['dtype']
+            if type(data[col]) == MaskedColumn:
+                colmasked = True
+                cmask = data[col].mask
+                data[col].fill_value = maskfill
+                data[col] = data[col].filled()
+            cdata = np.array(data[col]).astype(cdtype)
+            if 'round2' in list(coldict[col].keys()):
+                cdata = np.round(cdata, coldict[col]['round2'])
+            data[col] = cdata
+            data[col].unit = coldict[col]['unit']
+            if colmasked == True:
+                data[col] = MaskedColumn(data[col])
+                data[col].mask = cmask
     return
 
 
